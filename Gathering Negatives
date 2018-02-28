@@ -1,0 +1,21 @@
+import urllib.request
+import cv2
+import numpy as np
+
+def store_raw_images():
+    neg_images_link = '//image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'  # The link to Imagenet url that contains the url of the required negatives  
+    neg_image_urls = urllib.request.urlopen(neg_images_link).read().decode()
+    pic_num = 1
+    
+    for i in neg_image_urls.split('\n'):
+        try:
+            print(i)
+            urllib.request.urlretrieve(i, "neg/"+str(pic_num)+".jpg")           # Retrieve the image from the link and save it in the 'neg' folder
+            img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
+            resized_image = cv2.resize(img, (100, 100))                         # should be larger than samples / postive pic (so we can place our image on it)
+            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            pic_num += 1
+            
+        except Exception as e:
+            print(str(e))                                                  # It's good to get a lot of negative images, like the double of the positive ones.
+                                                 # You may remove some broken images or let them be. Read Important note for more
