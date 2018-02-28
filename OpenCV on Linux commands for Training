@@ -7,4 +7,4 @@ opencv_createsamples -info info/info.lst -num 1950 -w 20 -h 20 -vec positives.ve
 # Since my server was on a 2GB RAM, the train command is run for 10 stages and for 1800 positives otherwise the server might kick us out due to overloading :P
 opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 900 -numStages 10 -w 20 -h 20
 
-# The output is produced in the Data folder with output as Cascade.xml that is used for Recognition of the sample watch. 
+# The output is produced in the Data folder with output as Cascade.xml that is used for Recognition of the sample watch in the code for Object Detection
