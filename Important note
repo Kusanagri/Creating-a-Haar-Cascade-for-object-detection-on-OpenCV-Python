@@ -1,0 +1,7 @@
+The Training method used here for the Haar Cascade file is setting up a linux server that trains the vector file over the background files.
+You can do it on Windows but Linux is much faster as compared, Mac can also be used.
+To see how to setup a Linux server visit Digital Ocean with hourly server rent and downlaod the OpenCV library and other required compoments after which you are ready to go. :D
+For Image searching use any site though I'd prefer Imagenet.org that directly provides links for the images which is the required criteria.
+One Important point:
+There maybe some images in the negative that are of no use, like maybe a broken link produced a broken a broken image or something of that sort.
+It is not necessarily important to remove those images though it can be done by using one broken image as a tmplate and match with the other same broken images and then collectively delete them.
