@@ -1,0 +1,10 @@
+# First the positive samples are created:
+opencv_createsamples -img watch5050.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 1950
+
+# Now that we have positive images, we now need to create the vector file, which is basically where we stitch all of our positive images together:
+opencv_createsamples -info info/info.lst -num 1950 -w 20 -h 20 -vec positives.vec    # A 20*20 file is created for less Training time
+
+# Since my server was on a 2GB RAM, the train command is run for 10 stages and for 1800 positives otherwise the server might kick us out due to overloading :P
+opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 900 -numStages 10 -w 20 -h 20
+
+# The output is produced in the Data folder with output as Cascade.xml that is used for Recognition of the sample watch. 
